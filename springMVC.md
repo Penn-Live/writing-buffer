@@ -1,6 +1,32 @@
 - SpringMVC 的执行流程
 
-  *springMVC是由dispatchservlet为核心的分层控制框架。首先客户端发出一个请求web服务器解析请求url并去匹配dispatchservlet的映射url，如果匹配上就将这个请求放入到dispatchservlet，dispatchservlet根据mapping映射配置去寻找相对应的handel，然后把处理权交给找到的handel，handel封装了处理业务逻辑的代码，当handel处理完后会返回一个逻辑视图modelandview给dispatchservlet，此时的modelandview是一个逻辑视图不是一个正式视图，所以dispatchservlet会通过viewresource视图资源去解析modelandview，然后将解析后的参数放到view中返回到客户端并展现。* 
+  *1.用户发送请求到DispatchServlet*
+
+  *2.DispatchServlet根据请求路径查询具体的Handler*
+
+  *3.HandlerMapping返回一个HandlerExcutionChain给DispatchServlet*
+
+  　*HandlerExcutionChain：Handler和Interceptor集合*
+
+  *4.DispatchServlet调用HandlerAdapter适配器*
+
+  *5.HandlerAdapter调用具体的Handler处理业务*
+
+  *6.Handler处理结束返回一个具体的ModelAndView给适配器*
+
+     *ModelAndView:model-->数据模型，view-->视图名称*
+
+  *7.适配器将ModelAndView给DispatchServlet*
+
+  *8.DispatchServlet把视图名称给ViewResolver视图解析器*
+
+  *9.ViewResolver返回一个具体的视图给DispatchServlet*
+
+  *10.渲染视图*
+
+  *11.展示给用户*
+
+   
 
 - Spring MVC 的核心控制器是什么？消息处理流程有哪些？ 
 
